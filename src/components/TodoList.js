@@ -38,6 +38,14 @@ const TodoList = () => {
           setTaskList(templist)
           window.location.reload()
     }
+
+    const updateTaskList = (obj,index) => {
+        let tempList = taskList
+        tempList[index] = obj
+        localStorage.setItem('taskListKey',JSON.stringify(tempList))
+        setTaskList(tempList)
+        window.location.reload()
+    }
    
     console.log(taskList)
     return (
@@ -49,7 +57,7 @@ const TodoList = () => {
          <div className='container mt-5 d-flex flex-wrap'>
              {taskList.map((item, index)=>{
                  return(
-                     <Card key={index} item={item} index={index} deleteTask={deleteTask}/>
+                     <Card key={index} item={item} index={index} deleteTask={deleteTask}  updateTaskList={ updateTaskList}/>
                  )
              })}
          </div>

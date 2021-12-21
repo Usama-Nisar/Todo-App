@@ -1,7 +1,12 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
-const Card = ({ item, index, deleteTask }) => {
+import EditTask from '../modal/EditTask';
+
+
+const Card = ({ item, index, deleteTask, updateTaskList }) => {
+
+    const [modal, setModal] = useState(false)
 
     const colors = [
         {
@@ -26,11 +31,20 @@ const Card = ({ item, index, deleteTask }) => {
         }
     ]
 
+    const toggle = () => {
+        setModal(!modal)
+    }
+
     const handleDelete = (index) => {
         deleteTask(index)
     }
-    return (
 
+    const updateTask = (obj) => {
+        updateTaskList(obj,index)
+    }
+    return (
+        
+        <>
         <div className="card">
             <div className="card-header">
                 Featured
@@ -51,11 +65,13 @@ const Card = ({ item, index, deleteTask }) => {
                         <FontAwesomeIcon 
                          icon={faEdit} 
                          style={{ "color": colors[index % 5].primaryColor, "cursor": "pointer" }}
-                         />
+                         onClick={toggle} />
                     </div>
                 </div>
             </div>
         </div>
+        <EditTask modal={modal} toggle={toggle} updateTask={updateTask} item={item}/>
+        </>
     )
 }
 
