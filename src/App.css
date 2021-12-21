@@ -4,10 +4,29 @@
   --header-background: #e9eef6;
 }
 
+/******************************BODY**************************/
+*{
+  box-sizing: border-box;
+}
+
 
 /************************HEADER**************************/
 .header{
      background-color: var(--header-background);
      height: 12.5rem;
      width: 100vw;
+}
+
+
+/************************CARD**************************/
+
+
+.card{
+  padding: 10px 10px;
+  margin: 15px 15px;
+  border-top: 5px solid black !important;
+}
+
+.icon{
+  margin-left: 2px;
 }

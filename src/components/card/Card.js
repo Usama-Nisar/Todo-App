@@ -1,39 +1,58 @@
 import React from 'react'
-
-const Card = ({item,index}) => {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
+const Card = ({ item, index, deleteTask }) => {
 
     const colors = [
         {
-            primaryColor : "#5D93E1",
-            secondaryColor : "#ECF3FC"
+            primaryColor: "#5D93E1",
+            secondaryColor: "#ECF3FC"
         },
         {
-            primaryColor : "#F9D288",
-            secondaryColor : "#FEFAF1"
+            primaryColor: "#F9D288",
+            secondaryColor: "#FEFAF1"
         },
         {
-            primaryColor : "#5DC250",
-            secondaryColor : "#F2FAF1"
+            primaryColor: "#5DC250",
+            secondaryColor: "#F2FAF1"
         },
         {
-            primaryColor : "#F48687",
-            secondaryColor : "#FDF1F1"
+            primaryColor: "#F48687",
+            secondaryColor: "#FDF1F1"
         },
         {
-            primaryColor : "#B964F7",
-            secondaryColor : "#F3F0FD"
+            primaryColor: "#B964F7",
+            secondaryColor: "#F3F0FD"
         }
     ]
-    return (
-        <div className="card-wrapper mr-5">
-            <div className="card-top" style={{ "background-color": colors[index % 5].primaryColor }}></div>
-            <div className="task-holder">
-                <span className="card-header" style={{ "background-color": colors[index % 5].secondaryColor, "border-radius": "10px" }}>{item.Name}</span>
-                <p className="mt-3">{item.Description}</p>
 
-                <div style={{ "position": "absolute", "right": "20px", "bottom": "20px" }}>
-                    <i className="far fa-edit mr-3" style={{ "color": colors[index % 5].primaryColor, "cursor": "pointer" }} onClick={() => setModal(true)}></i>
-                    <i className="fas fa-trash-alt" style={{ "color": colors[index % 5].primaryColor, "cursor": "pointer" }} onClick={handleDelete}></i>
+    const handleDelete = (index) => {
+        deleteTask(index)
+    }
+    return (
+
+        <div className="card">
+            <div className="card-header">
+                Featured
+            </div>
+            <div className="card-body">
+                <h5 className="card-title">{item.Name}</h5>
+                <p className="card-text">{item.Description}</p>
+                <div className='row'>
+                    <div className='col'>
+                        <FontAwesomeIcon 
+                         icon={faTrash} 
+                         style={{ "color": colors[index % 5].primaryColor, "cursor": "pointer" }} 
+                         className='icon'
+                         onClick={handleDelete} />
+                    </div>
+                    <div className='col'></div>
+                    <div className='col'>
+                        <FontAwesomeIcon 
+                         icon={faEdit} 
+                         style={{ "color": colors[index % 5].primaryColor, "cursor": "pointer" }}
+                         />
+                    </div>
                 </div>
             </div>
         </div>
